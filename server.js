@@ -6,7 +6,8 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: 'https://sekend-first-database.vercel.app' }));
+
 app.use(bodyParser.json());
 
 // MongoDB Connection
@@ -44,5 +45,5 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // Start Server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port https://${PORT}`));
