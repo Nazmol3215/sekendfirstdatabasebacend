@@ -2,20 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 
 // Middleware
-app.use(cors({
-    origin: 'https://your-vercel-url.vercel.app', // আপনার Vercel ফ্রন্টএন্ড URL
-    methods: ['GET', 'POST'], // অনুমোদিত HTTP মেথড
-    credentials: true // প্রয়োজন হলে কুকি বা অথরাইজেশন
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const MONGO_URI = 'mongodb+srv://FirstDatabase:FirstDatabasePoossword@cluster0.6mhj7.mongodb.net/yourDatabaseName?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb+srv://FirstDatabase:FirstDatabasePoossword@cluster0.6mhj7.mongodb.net/test?retryWrites=true&w=majority';
+
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB Atlas'))
@@ -48,5 +44,5 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`Server running on port https://${PORT}`));
